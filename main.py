@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pandas_datareader as web
 import datetime as dt
+from sklearn.manifold import trustworthiness
 
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.python.keras.models import Sequential
@@ -24,9 +25,11 @@ data = web.DataReader(company, 'yahoo', start, end)
 # Prepare Data
 scaler = MinMaxScaler(feature_range=(0,1))
 scaled_data = scaler.fit_transform(data['Close'].values.reshape(-1,1))
-prediction_days = 100
+prediction_days = 365
 x_train = []
 y_train = []
+
+print("Collecting data...")
 
 for x in range(prediction_days, len(scaled_data)):
     x_train.append(scaled_data[x-prediction_days:x,0])
@@ -37,10 +40,14 @@ for x in range(prediction_days, len(scaled_data)):
 x_train, y_train = np.array(x_train), np.array(y_train)
 x_train = np.reshape(x_train,(x_train.shape[0],x_train.shape[1],1))
 
+print("Initializing...")
+
 # Training Model
 
 model = Sequential()
 model.add(LSTM(units=50, return_sequences=True, input_shape=(x_train.shape[1],1)))
+model.add(Dropout(0.2))
+model.add(LSTM(units=50, return_sequences=True))
 model.add(Dropout(0.2))
 model.add(LSTM(units=50, return_sequences=True))
 model.add(Dropout(0.2))
@@ -50,10 +57,9 @@ model.add(Dense(units=1)) # Prediction for next price
 
 
 model.compile(optimizer='adam', loss='mean_squared_error')
-model.fit(x_train, y_train, epochs=24, batch_size=32)
+model.fit(x_train, y_train, epochs=5, batch_size=32)
 
 # Testing
-print("Collecting data...")
 
 test_start = dt.datetime(2020,1,1)
 test_end = dt.datetime(2022,1,1)
@@ -68,8 +74,10 @@ model_inputs = model_inputs.reshape(-1,1)
 model_inputs = scaler.transform(model_inputs)
 
 # Prediction
-print("Initializing...")
+
 x_test = []
+
+print("Predicting...")
 
 for x in range(prediction_days, len(model_inputs)):
     x_test.append(model_inputs[x-prediction_days:x,0])
@@ -81,7 +89,7 @@ predicted_prices = model.predict(x_test)
 predicted_prices = scaler.inverse_transform(predicted_prices)
 
 # Prediction for next day
-print("Predicting...")
+
 
 real_data = [model_inputs[len(model_inputs) + 1 - prediction_days:len(model_inputs+1), 0]]
 real_data = np.array(real_data)
