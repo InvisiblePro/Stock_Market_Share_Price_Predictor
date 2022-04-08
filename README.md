@@ -1,4 +1,4 @@
-# Stock Market Share Price Predictor <hr>
+# Stock Market Share Price Predictor  [![](https://img.shields.io/badge/Language-Python-blue?logo=python&style=for-the-badge)](https://www.python.org/)
 
 ### This is an AI based project which specifically on `Data domain`
 ### _This Repository contains program which predicts share price for particular organisation by data of past 60 days._
