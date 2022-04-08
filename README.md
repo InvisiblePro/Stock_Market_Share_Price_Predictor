@@ -1,7 +1,7 @@
 # Stock Market Share Price Predictor <hr>
 
 ### This is an AI based project which specifically on `Data domain`
-### _This Repository contains program which predicts share price for particular organisation by data of past 100 days._
+### _This Repository contains program which predicts share price for particular organisation by data of past 60 days._
 
 
 > Modules Required
