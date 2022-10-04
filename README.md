@@ -13,7 +13,7 @@
     - pandas 
     - pandas_datareader
 
-Just download the `Download.zip` file or `git clone https://github.com/InvisiblePro/Stock_Market_Share_Price_Predictor.git` and install all requirements and have predictions of your Share prices, increase your profits!.... enjoy!
+Just download the `Download.zip` file or `git clone https://github.com/InvisiblePro/Stock_Market_Share_Price_Predictor.git` and install all requirements and have predictions of your Share prices, Increase your profits!.... Enjoy!!🥳
 
 You can install manually using `pip install` in command prompt, or you install through `pip install -r requirements.txt` file in command prompt
  
