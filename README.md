@@ -22,7 +22,8 @@ You can install manually using `pip install` in command prompt, or you install t
 
 <h6><hr></h6>
 <h4> 
-<img src="https://www.freeiconspng.com/uploads/sign-warning-icon-png-7.png" width=20> This is just prediction done by model!! <h4>
+<img src="https://www.freeiconspng.com/uploads/sign-warning-icon-png-7.png" width=20> This is just prediction done by model <h4>
+    
 <hr>
 
 [<img src="https://img.shields.io/badge/GitHub-InvisiblePro-blue?logo=github&style=for-the-badge" alt="InvisiblePro">](https://github.com/InvisiblePro)
